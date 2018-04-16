@@ -1,6 +1,10 @@
 # Make sure the right gtf file has been used.
 library(systemPipeR)
 library(GenomicFeatures)
+
+targets <- read.delim("targets.txt", comment.char = "#")
+args <- systemArgs(sysma="tophat.param", mytargets="targets.txt")
+
 txdb <- makeTxDbFromGFF(file="data/Macaca_mulatta.Mmul_8.0.1.92.gtf", format="gtf", dataSource="ENSEMBL", organism="Macaca mulatta")
 saveDb(txdb, file="./data/Macaca_mulatta8.sqlite")
 
