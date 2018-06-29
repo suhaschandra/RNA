@@ -9,7 +9,12 @@ targets <- read.delim("targets.txt", comment.char = "#")
 countDF <- read.delim("results/countDFeByg.xls", row.names=1, check.names=FALSE)
 cmp <- readComp(file="targets.txt", format="matrix", delim="-")
 edgeDF <- run_edgeR(countDF=countDF, targets=targets, cmp=cmp[[1]], independent=TRUE, mdsplot="")
+
+#For monkeys
 desc <- read.delim("/bigdata/messaoudilab/ssure003/Reference/Rhesus_annotations.xls", row.names=1)
+#For humans follow the following
+desc <- read.delim("/bigdata/messaoudilab/ssure003/Reference/Homo_sapiens/Human_Annotation.txt", row.names=1)
+
 edgeDF <- cbind(edgeDF, desc[rownames(edgeDF),])
 write.table(edgeDF, "./results/edgeRglm_allcomp.xls", quote=FALSE, sep="\t", col.names = NA)
 
